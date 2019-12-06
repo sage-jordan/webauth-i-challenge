@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/sage-jordan/webauth-i-challenge#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "knex": "^0.20.3",
     "nodemon": "^2.0.1",
