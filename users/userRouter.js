@@ -10,4 +10,16 @@ router.get('/', (req, res) => {
         .catch(err => res.send(err));
 });
 
+router.get('/:id', (req, res) => {
+    const {id} = req.params;
+    console.log(`Getting user with id ${id}`)
+    Users.findById(id)
+        .then(user => {
+            res.status(200).json(user)
+        })
+        .catch(err => {
+            res.status(500).json(err);
+        })
+})
+
 module.exports = router;
