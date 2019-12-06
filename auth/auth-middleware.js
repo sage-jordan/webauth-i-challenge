@@ -1,7 +1,7 @@
 const Users = require('../users/users-model'); 
 const bcrypt = require('bcryptjs');
 
-module.exports = function restricted (rec, res, next){
+module.exports = function restricted (req, res, next){
     const { username, password } = req.headers;
 
     if(username && password){
@@ -17,5 +17,7 @@ module.exports = function restricted (rec, res, next){
             .catch(err => {
                 res.status(500).json({err});
             });
+    } else {
+        res.status(404).json({ message: `Please provide a valid username and password` });
     };
 };
