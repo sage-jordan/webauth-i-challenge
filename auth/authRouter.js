@@ -1,8 +1,9 @@
 const router = require('express').Router();
+const restricted = require('./auth-middleware');
 
 const Users = require('../users/users-model.js');
 
-router.post('/register', (req, res) => {
+router.post('/register', restricted, (req, res) => {
     let user = req.body;
 
     Users.add(user)
@@ -14,7 +15,7 @@ router.post('/register', (req, res) => {
         });
 });
 
-router.post('/login', (req, res) => {
+router.post('/login', restricted, (req, res) => {
     let { username, password } = req.body;
 
     Users.findBy({ sername })
