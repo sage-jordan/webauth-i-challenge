@@ -19,19 +19,21 @@ router.post('/register', (req, res) => {
 });
 
 router.post('/login', restricted, (req, res) => {
-    let { username, password } = req.body;
+    let { username, pass } = req.body;
+    console.log("Username, pass: ", username, pass);
 
     Users.findBy({ username })
         .first()
         .then(user => {
-            if(user && bcrypt.compareSync(password, user.password)){
+            console.log("User: ", user);
+            if(user && bcrypt.compareSync(pass, user.pass)){
                 res.status(200).json({ message: `Welcome ${user.username}!`});
             } else {
                 res.status(401).json({ message: `Invalid Cridentials` });
             }
         })
         .catch(err => {
-            res.status(500).json(err)
+            res.status(500).json({ err: err.message })
         })
 })
 

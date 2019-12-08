@@ -30,7 +30,7 @@ router.delete('/:id', (req, res) => {
             res.status(200).json(`User id: ${id} successfully deleted`);
         })
         .catch(err => {
-            res.status(500).json(err);
+            res.status(500).json({ err: err.message });
         })
 })
 
