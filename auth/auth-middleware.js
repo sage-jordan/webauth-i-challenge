@@ -22,6 +22,6 @@ module.exports = function restricted (req, res, next){
                 res.status(500).json({ error: err.message });
             });
     } else {
-        res.status(404).json({ message: `Please provide a valid username and password` });
+        res.status(404).json({ message: `You shall not pass!` });
     };
 };
