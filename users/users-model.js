@@ -4,12 +4,13 @@ module.exports = {
     add,
     find,
     findBy,
-    findById
+    findById,
+    remove
 };
 
 function find(){
     return db('users')
-        .select('id', 'username');
+        .select('id', 'username', 'pass');
 };
 
 function findBy(filter){
@@ -20,7 +21,7 @@ function findBy(filter){
 
 function add(user){
     return db('users')
-        .insert(user, 'id')
+        .insert(user)
         .then(ids => {
             const [id] = ids;
             return findById(id);
@@ -33,3 +34,9 @@ function findById(id){
         .where({ id })
         .first();
 };
+
+function remove(id){
+    return db('users')
+        .where({ id: Number(id) })
+        .del()
+}
