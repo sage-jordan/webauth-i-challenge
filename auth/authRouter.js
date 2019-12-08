@@ -27,6 +27,7 @@ router.post('/login', restricted, (req, res) => {
         .then(user => {
             console.log("User: ", user);
             if(user && bcrypt.compareSync(pass, user.pass)){
+                req.session.user = user;
                 res.status(200).json({ message: `Welcome ${user.username}!`});
             } else {
                 res.status(401).json({ message: `Invalid Cridentials` });
